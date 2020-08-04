@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi8/nodejs-12:1-36
 
 
-WORKDIR /usr/src/app
+WORKDIR /opt/app-root/src
 
 COPY  package*.json ./
 
