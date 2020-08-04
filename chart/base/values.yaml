@@ -12,7 +12,7 @@ image:
   repository: replace
   tag: replace
   pullPolicy: IfNotPresent
-  port: 3000
+  port: 4000
 
 nameOverride: ""
 fullnameOverride: ""
@@ -29,7 +29,7 @@ ingress:
   appid:
     enabled: false
     # web or app - https://cloud.ibm.com/docs/services/appid?topic=appid-kube-auth
-    requestType: web
+    #requestType: web
 
 #  host: hello
   namespaceInHost: true
