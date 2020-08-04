@@ -1,49 +1,51 @@
-# Default values for template-node-typescript.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-global: {}
-
-serviceUrl: "covidmanagement-backend:80"
-
 replicaCount: 1
-logLevel: "debug"
-
+revisionHistoryLimit: 1
 image:
-  repository: replace
-  tag: replace
-  pullPolicy: IfNotPresent
-  port: 4000
-
-nameOverride: ""
-fullnameOverride: ""
-
+  repository: nodeserver
+  tag: 1.0.0
+  pullPolicy: IfNotPresent 
+  resources:
+    requests:
+      cpu: 200m
+      memory: 300Mi
+  # readinessProbe: {}
+  # Example (replace readinessProbe: {} with the following):
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: 4000
+    initialDelaySeconds: 3
+    periodSeconds: 5
+  #livenessProbe: {}
+  # Example (replace livenessProbe: {} with the following)::
+  livenessProbe:
+    httpGet:
+      path: /live
+      port: 4000
+    initialDelaySeconds: 40
+    periodSeconds: 10  
 service:
-  type: ClusterIP
-  port: 80
-
-route:
+  name: Node
+  type: NodePort
+  servicePort: 4000
+hpa:
   enabled: false
-
-ingress:
-  enabled: true
-  appid:
-    enabled: false
-    # web or app - https://cloud.ibm.com/docs/services/appid?topic=appid-kube-auth
-    #requestType: web
-
-#  host: hello
-  namespaceInHost: true
-  subdomain: containers.appdomain.cloud
-  path: "/"
-
-#  tlsSecretName: ""
-
-vcsInfo:
-  repoUrl: "https://github.com/tcs-sandbox-team-one/covidmanagement-backend.git"
-  branch: "master"
-
-partOf:
-
-connectsTo:
-
-runtime: nodejs
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+    cpu:
+      targetAverageUtilization: 70
+    memory:
+      targetAverageUtilization: 70
+services:
+base:
+  enabled: false
+  replicaCount: 1
+  image:
+    tag : v0.9.9
+  weight: 100
+istio:
+  enabled: false
+  weight: 100
