@@ -30,6 +30,8 @@ service:
   name: Node
   type: NodePort
   servicePort: 4000
+route:
+  enabled: false
 hpa:
   enabled: false
   minReplicas: 1
