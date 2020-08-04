@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/nodejs-12:1-36 AS builder
 
-RUN mkdir /app
+
 WORKDIR /app
 
 COPY package.json /app
