@@ -10,22 +10,22 @@ image:
     requests:
       cpu: 200m
       memory: 300Mi
-  # readinessProbe: {}
+  readinessProbe: {}
   # Example (replace readinessProbe: {} with the following):
-  readinessProbe:
-    httpGet:
-      path: /ready
-      port: 8080
-    initialDelaySeconds: 3
-    periodSeconds: 5
-  #livenessProbe: {}
+  # readinessProbe:
+    # httpGet:
+      # path: /ready
+      # port: 8080
+    # initialDelaySeconds: 3
+    # periodSeconds: 5
+  livenessProbe: {}
   # Example (replace livenessProbe: {} with the following)::
-  livenessProbe:
-    httpGet:
-      path: /live
-      port: 8080
-    initialDelaySeconds: 40
-    periodSeconds: 10  
+  # livenessProbe:
+    # httpGet:
+      # path: /live
+      # port: 8080
+    # initialDelaySeconds: 40
+    # periodSeconds: 10  
 service:
   name: Node
   type: NodePort
