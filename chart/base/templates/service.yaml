@@ -9,7 +9,7 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  - name: http  
+  - name: 8080-tcp  
     port: {{ .Values.service.servicePort }}
   selector:
     app: "{{  .Chart.Name }}-selector"
