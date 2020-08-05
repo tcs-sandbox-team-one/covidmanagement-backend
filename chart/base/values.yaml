@@ -28,7 +28,7 @@ image:
     # periodSeconds: 10  
 service:
   name: Node
-  type: NodePort
+  type: ClusterIP
   servicePort: 8080
 route:
   enabled: true
