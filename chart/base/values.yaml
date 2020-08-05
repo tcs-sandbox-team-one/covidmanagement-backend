@@ -32,6 +32,8 @@ service:
   servicePort: 4000
 route:
   enabled: false
+ingress:
+  enabled: false
 hpa:
   enabled: false
   minReplicas: 1
