@@ -15,7 +15,7 @@ image:
   readinessProbe:
     httpGet:
       path: /ready
-      port: 4000
+      port: 8080
     initialDelaySeconds: 3
     periodSeconds: 5
   #livenessProbe: {}
@@ -23,13 +23,13 @@ image:
   livenessProbe:
     httpGet:
       path: /live
-      port: 4000
+      port: 8080
     initialDelaySeconds: 40
     periodSeconds: 10  
 service:
   name: Node
   type: NodePort
-  servicePort: 4000
+  servicePort: 8080
 route:
   enabled: true
 ingress:
